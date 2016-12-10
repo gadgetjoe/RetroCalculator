@@ -42,6 +42,9 @@ class ViewController: UIViewController {
     } catch let err as NSError {
       print(err.debugDescription)
     }
+    
+    outputLabel.text = "0"
+    
     }
   
   @IBAction func numberPressed(sender: UIButton) {
@@ -76,6 +79,13 @@ class ViewController: UIViewController {
     processOperation(operation: currentOperation)
   }
   
+  @IBAction func clearPressed(_ sender: Any) {
+    
+  runningNumber.removeAll()
+    outputLabel.text = "0"
+    playSound()
+  }
+  
   func playSound(){
     if btnSound.isPlaying {
       btnSound.stop()
@@ -86,6 +96,7 @@ class ViewController: UIViewController {
   }
   
   func processOperation(operation: Operation) {
+    playSound()
     if currentOperation != Operation.Empty {
       
       if runningNumber != "" {
